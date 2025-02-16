@@ -2,7 +2,7 @@ package com.example.Online_Pizza_System.service;
 
 import com.example.Online_Pizza_System.model.Order;
 import org.springframework.stereotype.Service;
-
+import java.time.temporal.ChronoUnit; // this module I got from : https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/temporal/ChronoUnit.html
 import java.time.LocalTime;
 
 @Service
@@ -28,15 +28,21 @@ public class PizzaService {
         order.setToppingsPrice(toppingsPrice); // Set toppings price
 
         // Calculate total amount
-        double totalAmount = (basePrice * order.getQuantity()) + toppingsPrice + (order.isDelivery() ? 5 : 0);
+        double totalAmount = (basePrice * order.getQuantity()) + toppingsPrice;
+        if (order.isDelivery()) {
+            totalAmount += 5;
+        }
         order.setTotalAmount(totalAmount);
 
-        // Set delivery or pickup time
-        LocalTime currentTime = LocalTime.now();
-        String deliveryOrPickupTime = order.isDelivery() ?
-                currentTime.plusHours(1).toString() : currentTime.plusHours(2).toString();
-        order.setDeliveryOrPickupTime(deliveryOrPickupTime);
-
+// Set delivery or pickup time
+        LocalTime currentTime = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
+        LocalTime deliveryOrPickupTime;
+        if (order.isDelivery()) {
+            deliveryOrPickupTime = currentTime.plusHours(1);
+        } else {
+            deliveryOrPickupTime = currentTime.plusHours(2);
+        }
+        order.setDeliveryOrPickupTime(deliveryOrPickupTime.toString());
         return order;
     }
 
