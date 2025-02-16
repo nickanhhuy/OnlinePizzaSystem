@@ -2,6 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Order Pizza</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 50%;
+            margin: auto;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        .toppings label {
+            display: inline;
+            font-weight: normal;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <h2>User Information:</h2>
@@ -27,11 +59,11 @@
 
     <label>Toppings:</label>
     <div class="toppings">
-        <input type="checkbox" th:field="*{toppings}" value="pepperoni"> Pepperoni
-        <input type="checkbox" th:field="*{toppings}" value="mushrooms"> Mushrooms
-        <input type="checkbox" th:field="*{toppings}" value="peppers"> Peppers
-        <input type="checkbox" th:field="*{toppings}" value="extra_cheese"> Extra Cheese
-        <input type="checkbox" th:field="*{toppings}" value="olives"> Olives
+        <input type="checkbox" th:field="*{toppings}" value="Pepperoni"> Pepperoni
+        <input type="checkbox" th:field="*{toppings}" value="Mushrooms"> Mushrooms
+        <input type="checkbox" th:field="*{toppings}" value="Peppers"> Peppers
+        <input type="checkbox" th:field="*{toppings}" value="Extra Cheese"> Extra Cheese
+        <input type="checkbox" th:field="*{toppings}" value="Olives"> Olives
     </div>
 
     <label>Number of Pizzas:</label>

@@ -14,24 +14,25 @@
         </ul>
         <p>Order type: <strong th:text="${receipt.delivery ? 'Delivery' : 'Pickup'}"></strong></p>
 
-        <h2>Price</h2>
-        <p th:text="${receipt.quantity}"></p> <strong th:text="${receipt.size}"></strong> pizza(s): $<p
-            th:text="${receipt.basePrice}"></p>
+        <h2>Price:</h2>
+        <p><span th:text="${receipt.quantity}"></span> <span th:text="${receipt.size}"></span> pizza(s): $<strong th:text="${receipt.basePrice}"></strong></p>
         <p>Toppings: $<strong th:text="${receipt.toppingsPrice}"></strong></p>
         <p th:if="${receipt.delivery}">Delivery Fee: $5.00</p>
-        <p>Your total is: $</p><p> th:text="${receipt.totalAmount}"></p></p>
+        <p>Your total is: $<strong th:text="${receipt.totalAmount}"></strong></p>
 
         <div th:if="${receipt.delivery}">
             <p>The order will be delivered to:</p>
-            <p th:text="${receipt.address}"></p>
+            <p><span th:text="${receipt.address}"></span></p>
             <p>Estimated delivery time is one hour (<strong th:text="${receipt.deliveryOrPickupTime}"></strong>)</p>
         </div>
 
         <div th:if="${!receipt.delivery}">
+            <p>The order will be delivered to:</p>
+            <p><span th:text="${receipt.address}"></span></p>
             <p>Estimated pickup time is two hours (<strong th:text="${receipt.deliveryOrPickupTime}"></strong>)</p>
         </div>
     </div>
-    <a th:href="@{/OnlinePizza}">
+    <a th:href="@{/OnlinePizzaSystem}">
         <button>Make a new order</button>
     </a>
 </body>
