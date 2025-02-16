@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Pizza</title>
+</head>
+<body>
+<h2>User Information:</h2>
+
+<form th:action="@{/receipt}" th:object="${order}" method="post">
+    <label>First Name:</label>
+    <input type="text" name="firstName" th:field="*{firstName}" value="Enter first name" required>
+
+    <label>Last Name:</label>
+    <input type="text" name="lastName" th:field="*{lastName}" value="Enter last name" required>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" th:field="*{phone}" value="Enter phone number" required>
+
+    <label>Address:</label>
+    <input type="text" name="address" th:field="*{address}" required>
+    <br>
+    <h2>Order Information:</h2>
+    <label>Pizza Size:</label>
+    <input type="radio" th:field="*{size}" value="small" required> Small ($10)<br>
+    <input type="radio" th:field="*{size}" value="medium"> Medium ($13)<br>
+    <input type="radio" th:field="*{size}" value="large"> Large ($17)<br>
+
+    <label>Toppings:</label>
+    <div class="toppings">
+        <input type="checkbox" th:field="*{toppings}" value="pepperoni"> Pepperoni
+        <input type="checkbox" th:field="*{toppings}" value="mushrooms"> Mushrooms
+        <input type="checkbox" th:field="*{toppings}" value="peppers"> Peppers
+        <input type="checkbox" th:field="*{toppings}" value="extra_cheese"> Extra Cheese
+        <input type="checkbox" th:field="*{toppings}" value="olives"> Olives
+    </div>
+
+    <label>Number of Pizzas:</label>
+    <input type="number" name="quantity" min="1" th:field="*{quantity}" required>
+
+    <label>Order Type:</label>
+    <select th:field="*{delivery}" required>
+        <option th:value="false">Pick Up</option>
+        <option th:value="true">Delivery (+$5)</option>
+    </select>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

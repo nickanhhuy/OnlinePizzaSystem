@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Receipt</title>
+</head>
+<body>
+    <div th:object="${receipt}">
+        <h1>Order Receipt</h1>
+        <h2>Hi <strong th:text="${receipt.firstName}"></strong></h2>
+        <p>You ordered <strong th:text="${receipt.quantity}"></strong> <strong th:text="${receipt.size}"></strong> pizza(s)</p>
+        <p>with following toppings</p>
+        <ul>
+            <li th:each="topping : ${receipt.toppings}" th:text="${topping}"></li>
+        </ul>
+        <p>Order type: <strong th:text="${receipt.delivery ? 'Delivery' : 'Pickup'}"></strong></p>
+
+        <h2>Price</h2>
+        <p th:text="${receipt.quantity}"></p> <strong th:text="${receipt.size}"></strong> pizza(s): $<p
+            th:text="${receipt.basePrice}"></p>
+        <p>Toppings: $<strong th:text="${receipt.toppingsPrice}"></strong></p>
+        <p th:if="${receipt.delivery}">Delivery Fee: $5.00</p>
+        <p>Your total is: $</p><p> th:text="${receipt.totalAmount}"></p></p>
+
+        <div th:if="${receipt.delivery}">
+            <p>The order will be delivered to:</p>
+            <p th:text="${receipt.address}"></p>
+            <p>Estimated delivery time is one hour (<strong th:text="${receipt.deliveryOrPickupTime}"></strong>)</p>
+        </div>
+
+        <div th:if="${!receipt.delivery}">
+            <p>Estimated pickup time is two hours (<strong th:text="${receipt.deliveryOrPickupTime}"></strong>)</p>
+        </div>
+    </div>
+    <a th:href="@{/OnlinePizza}">
+        <button>Make a new order</button>
+    </a>
+</body>
+</html>
