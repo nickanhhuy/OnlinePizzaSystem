@@ -4,6 +4,7 @@
     <title>Order Pizza</title>
     <style>
         body {
+            background-color: lemonchiffon;
             font-family: Arial, sans-serif;
             width: 50%;
             margin: auto;
@@ -54,8 +55,8 @@
     <h2>Order Information:</h2>
     <label>Pizza Size:</label>
     <input type="radio" th:field="*{size}" value="small" required> Small ($10)<br>
-    <input type="radio" th:field="*{size}" value="medium"> Medium ($13)<br>
-    <input type="radio" th:field="*{size}" value="large"> Large ($17)<br>
+    <input type="radio" th:field="*{size}" value="medium" required> Medium ($13)<br>
+    <input type="radio" th:field="*{size}" value="large" required> Large ($17)<br>
 
     <label>Toppings:</label>
     <div class="toppings">

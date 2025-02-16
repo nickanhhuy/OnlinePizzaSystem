@@ -34,7 +34,7 @@ public class PizzaService {
         }
         order.setTotalAmount(totalAmount);
 
-// Set delivery or pickup time
+
         LocalTime currentTime = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
         LocalTime deliveryOrPickupTime;
         if (order.isDelivery()) {
